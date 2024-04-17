@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NoteCard from "../../components/NoteCard/NoteCard";
+import AddNoteForm from "../../components/AddNoteForm/AddNoteForm";
 
 export default function NoteListPage() {
     const [notes, setNotes] = useState([]); 
@@ -12,6 +13,7 @@ export default function NoteListPage() {
             ) : (
                 <></>
             ) }
+            <AddNoteForm notes={notes} setNotes={setNotes} />
             {notes.map((note) => (<NoteCard note={note} />))}
         </>
     );
