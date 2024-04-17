@@ -19,7 +19,7 @@ export default function NoteListPage() {
                 <></>
             ) }
             <AddNoteForm setNotes={setNotes} />
-            {notes.map((note) => (<NoteCard note={note} />))}
+            {notes.map((note) => (<NoteCard key={note._id} note={note} />))}
         </>
     );
 }
