@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import * as usersService from '../../utilities/users-service';
+import * as NoteAPI from '../../utilities/notes-api';
 
-export default function AddNoteForm({notes, setNotes}) {
+export default function AddNoteForm({setNotes}) {
     const [note, setNote] = useState('');
 
     function handleChange(evt) {
@@ -11,12 +11,11 @@ export default function AddNoteForm({notes, setNotes}) {
     async function handleSubmit(evt) {
         // Prevent form from being submitted to the server
         evt.preventDefault();
-        var newNotes = [...notes];
-        newNotes.push(note);
-        setNotes(newNotes);
-        
+        await NoteAPI.create(note);
+        const updatedNotes = await NoteAPI.index();
+        setNotes(updatedNotes);
+        setNote('');
     }
-
 
     return(
         <div>
